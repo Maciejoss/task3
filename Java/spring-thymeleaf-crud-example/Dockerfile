@@ -9,8 +9,8 @@ WORKDIR /app
 COPY src /app/src
 COPY pom.xml /app
 
-# Package the application
-RUN mvn clean install -DskipTests
+# Run tests first and then package the application
+RUN mvn clean test && mvn clean package
 
 # ---- Deploy Stage ----
 FROM openjdk:11-jdk-slim
